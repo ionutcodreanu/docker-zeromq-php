@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+    php-server:
+        image: zeromq:php
+        volumes:
+            - ./src:/var/www
+        networks:
+            - code-network
+        command: ["php", "/var/www/server.php"]
+    php-client:
+        image: zeromq:php
+        volumes:
+            - ./src:/var/www
+        networks:
+            - code-network
+        command: ["php", "/var/www/client.php"]
+networks:
+    code-network:
+        driver: bridge
